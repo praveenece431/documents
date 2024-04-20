@@ -26,3 +26,6 @@ sudo apt-get update -y
 sudo apt-get install jenkins -y
 sudo systemctl enable jenkins
 ```
+### 2. Open the inbound firewall port in Azure Network settings 
+
+### 3. OAccess the jenkins from its public IP of the node and port number.
