@@ -15,6 +15,6 @@ Before you install any new packages on your system, it is a good practice to upd
 
 ```bash
 sudo apt update
-sudo apt install maven
+sudo apt install -y maven
 mvn -version
 ```
