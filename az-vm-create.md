@@ -23,8 +23,6 @@ image="Canonical:UbuntuServer:18.04-DAILY-LTS:18.04.202306070"
 adminUsername="azureuser"
 adminPassword="YOUR_PASSWORD"
 #az group create --name $resourceGroup --location $location
-adminUsername="azureuser"
-adminPassword="AzureAdmin1234"
 
 # Create the first VM
 az vm create \
