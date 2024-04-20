@@ -10,7 +10,7 @@ This guide will walk you through the process of creating a virtual machine (VM) 
 ## Install AZ cli in Mobaxterm
 ```bash
 curl --insecure https://raw.githubusercontent.com/abeckDev/MobaXtermAzureCLI/master/install.sh | bash
-
+```
 ## Steps to Create a VM
 
 ### 1. Login to Azure
