@@ -106,7 +106,7 @@ kubectl get nodes
 #### Step 12
 #### The nodes will show you as in a NOT READY stage. For this, you need to install the network plugin. 
 #### This plugin will enable the pod to pod communication.
-#### Install the Calico network add-on
+#### Install the Calico network add-on only in the Master/Control-plane node
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
 ```
