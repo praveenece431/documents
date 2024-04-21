@@ -100,3 +100,10 @@ kubectl get nodes
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
 ```
+
+### Verify the cluster again if it is working
+```bash
+kubectl get nodes
+kubectl get pods -n kube-system
+```
+### Here you should see all the nodes are in READY state.
