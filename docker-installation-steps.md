@@ -1,4 +1,4 @@
-# Installing Docker on Ubuntu and CentOS
+# Installing Docker on Ubuntu and CentOS/RedHat
 
 This guide provides step-by-step instructions on how to install Docker, a popular containerization platform, on Ubuntu and CentOS. Docker allows you to package an application with all of its dependencies into a standardized unit for software development.
 
@@ -23,7 +23,7 @@ sudo usermod -aG docker <your-username>
 docker --version
 ````
 
-## Docker Installation on Ubuntu
+## Docker Installation on CentOs and RedHat
 
 ### Prerequisites
 - A CentOS or RedHat system (Recommended version: CentOS 7)
