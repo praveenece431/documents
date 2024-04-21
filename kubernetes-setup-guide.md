@@ -31,13 +31,10 @@ EOF
 sudo sysctl --system
 ```
 
-### Set up the Docker Engine repository
-```bash
-sudo apt-get update 
-```
 ### apt-transport-https may be a dummy package; if so, you can skip that package
 ```bash
 sudo apt-get install -y apt-transport-https ca-certificates curl gpg
+sudo apt-get update 
 ```
 
 ### Add Docker’s official GPG key
@@ -71,4 +68,35 @@ sudo apt-mark hold kubelet kubeadm kubectl
 
 #(Optional) Enable the kubelet service before running kubeadm:
 sudo systemctl enable --now kubelet
+```
+
+### On the control plane node only, initialize the cluster and set up kubectl access
+```bash
+sudo kubeadm init
+```
+### Copy and paste this as a regular user. Not with the root user.
+```bash
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+```
+### Join the worker nodes to the control plane (master)
+#### Execute the below command to print the join command. It will come by default when you initilize the cluster successfully.
+```bash
+kubeadm token create --print-join-command
+Eg:
+#sudo kubeadm join 10.0.0.4:6443 --token q093mt.3xjjh9kf9sbztx3o \
+#        --discovery-token-ca-cert-hash sha256:862cbf51f0824af210702502514a156d992fa87762f354a004a9bbbc06fed3c7
+```
+
+### Verify the cluster is working
+```bash
+kubectl get nodes
+```
+
+#### The nodes will show you as in a NOT READY stage. For this, you need to install the network plugin. 
+#### This plugin will enable the pod to pod communication.
+#### Install the Calico network add-on
+```bash
+kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
 ```
