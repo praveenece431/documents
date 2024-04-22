@@ -130,3 +130,9 @@ kubectl get pods --all-namespaces
 kubectl get nodes
 ```
 ### Here you should see all the nodes are in READY state.
+
+### HELM Install
+[-] https://helm.sh/docs/intro/install/
+```bash
+curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+```
