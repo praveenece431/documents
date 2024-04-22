@@ -96,8 +96,7 @@ kubeadm init --pod-network-cidr=10.244.0.0/16
 ```
 #### Step 11 - Copy the kubeadmn join command that is in the output. We will need this later.
 
-#### Step 12
-#### Copy and paste this as a regular user. Not with the root user.
+#### Step 12 - Copy and paste this as a regular user. Not with the root user.
 ```bash
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
