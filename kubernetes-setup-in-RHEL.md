@@ -94,9 +94,8 @@ sudo systemctl enable --now kubelet
 ```bash
 kubeadm init --pod-network-cidr=10.244.0.0/16
 ```
-#### Step 11 - Copy the kubeadmn join command that is in the output. We will need this later.
 
-#### Step 12 - Copy and paste this as a regular user. Not with the root user.
+#### Step 11 - Copy and paste this as a regular user. Not with the root user.
 ```bash
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
@@ -104,7 +103,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 ### Join the worker nodes to the control plane (master)
 
-#### Step 13
+#### Step 12
 #### Execute the below command to print the join command. It will come by default when you initilize the cluster successfully.
 ```bash
 kubeadm token create --print-join-command
@@ -117,7 +116,7 @@ Eg:
 kubectl get nodes
 ```
 
-#### Step 14
+#### Step 13
 #### The nodes will show you as in a NOT READY stage. For this, you need to install the network plugin. 
 #### This plugin will enable the pod to pod communication.
 #### Install the Flannel network add-on only in the Master/Control-plane node
