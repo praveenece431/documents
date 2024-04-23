@@ -1,3 +1,7 @@
+# Script for K8s easy and quick setup in RHEL/CenOS
+
+#### Copy this script to a file in a script and execute in both Master and Worker nodes.
+```bash
 cat <<EOF | sudo tee /etc/modules-load.d/containerd.conf
 overlay
 br_netfilter
@@ -48,3 +52,14 @@ EOF
 sudo yum install -y kubelet kubeadm kubectl --disableexcludes=kubernetes
 #Enable the kubelet service before running kubeadm:
 sudo systemctl enable --now kubelet
+```
+
+#### Execute the below command only in the Master
+```bash
+kubeadm init --pod-network-cidr=10.244.0.0/16
+```
+
+#### Install the Flannel network add-on only in the Master/Control-plane node
+```bash
+kubectl apply -f https://github.com/flannel-io/flannel/releases/latest/download/kube-flannel.yml
+```
