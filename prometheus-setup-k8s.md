@@ -14,6 +14,8 @@ kubectl create namespace prometheus
 #### Add Prometheus Helm repo.
 ```bash
 helm repo add stable https://charts.helm.sh/stable
+```
+```bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 ```
 
