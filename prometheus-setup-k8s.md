@@ -11,6 +11,11 @@ curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
 ```bash
 kubectl create namespace prometheus
 ```
+#### Add Prometheus Helm repo.
+```bash
+helm repo add stable https://charts.helm.sh/stable
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+```
 
 #### Install kube-Prometheus-stack. Below is the command to install kube-prometheus-stack. The helm repo kube-stack-Prometheus (formerly Prometheus-operator) comes with a Grafana deployment embedded.
 ```bash
