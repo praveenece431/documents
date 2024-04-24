@@ -48,6 +48,11 @@ kubectl expose service grafana — type=NodePort — target-port=3000 — name=g
 kubectl expose service grafana --type=LoadBalancer --target-port=3000 --name=grafana-lb-ext
 ```
 
+#### Expose the kube-state-metrics with type NodePort or LoadBalancer same as above
+```bash
+kubectl expose service prometheus-kube-state-metrics --type=LoadBalancer --target-port=8080 --name=kubestate-lb-ext
+```
+
 #### Below are the Grafana dashboard IDs that are to be used to import
 #### Kubernetes Cluster Monitoring (via Prometheus):
 - Dashboard ID: 315
