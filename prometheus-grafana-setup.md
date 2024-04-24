@@ -47,3 +47,19 @@ kubectl expose service grafana — type=NodePort — target-port=3000 — name=g
 ```bash
 kubectl expose service grafana — type=LoadBalancer — target-port=3000 — name=grafana-lb-ext
 ```
+
+#### Below are the Grafana dashboard IDs that are to be used to import
+#### Kubernetes Cluster Monitoring (via Prometheus):
+- Dashboard ID: 315
+- Description: 
+  - Monitors your Kubernetes cluster using Prometheus. It displays overall cluster CPU, memory, and filesystem usage, as well as individual pod, container, and systemd service statistics. This dashboard relies on cAdvisor metrics only. You’ll need a running Kubernetes cluster with deployed Prometheus, which uses metrics provided by cAdvisor via the kubelet service and kube-apiserver service
+
+#### Kubernetes Nodes Monitoring
+- Dashboard ID: 15759
+- Description:
+  - Observes the nodes in your Kubernetes cluster, providing insights into CPU, memory, network I/O, and more.
+
+#### Kubernetes Pods Monitoring
+- Dashboard ID: 15760
+- Description:
+  - Offers detailed metrics for Kubernetes pods, including CPU, memory, and network I/O.
