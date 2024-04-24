@@ -45,7 +45,7 @@ kubectl expose service grafana — type=NodePort — target-port=3000 — name=g
 ```
 #### You can also expose it as with type LoadBalancer service to access in browser with port 80
 ```bash
-kubectl expose service grafana — type=LoadBalancer — target-port=3000 — name=grafana-lb-ext
+kubectl expose service grafana --type=LoadBalancer --target-port=3000 --name=grafana-lb-ext
 ```
 
 #### Below are the Grafana dashboard IDs that are to be used to import
