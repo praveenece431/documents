@@ -37,3 +37,13 @@ pip3 cache purge
 ```bash
 pip3 install azure-cli
 ```
+
+### Another way of installation from Source code
+#### Follow the below steps:
+```bash
+git clone https://github.com/Azure/azure-cli.git
+cd azure-cli
+./scripts/dev_setup.py
+az --version
+```
+
