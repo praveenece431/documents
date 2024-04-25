@@ -79,4 +79,11 @@ kubectl expose service prometheus-kube-state-metrics --type=LoadBalancer --targe
   - job_name: stage_metrics
     static_configs: 
     - targets:
-      - <service end point>:8080
+      - hostname:8080
+
+### Output dashboards
+![NodeExporter-Metrics](https://github.com/praveenece431/documents/blob/main/images/node-exporter.png)
+
+![NodeMonitoring-Metrics](https://github.com/praveenece431/documents/blob/main/images/node-monitoring.png)
+
+![PodContainer-Metrics](https://github.com/praveenece431/documents/blob/main/images/container-metrics.png)
