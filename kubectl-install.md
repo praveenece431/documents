@@ -4,12 +4,8 @@
 ### Install kubectl binary with curl on Linux 
 ```bash
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-```
-### Install kubectl
-```bash
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 ```
-
 ### Note:
 ```bash
 If you do not have root access on the target system, you can still install kubectl to the ~/.local/bin directory:
