@@ -72,3 +72,11 @@ kubectl expose service prometheus-kube-state-metrics --type=LoadBalancer --targe
 - Dashboard ID: 15760
 - Description:
   - Offers detailed metrics for Kubernetes pods, including CPU, memory, and network I/O.
+
+#### For all the Kube state metrics, you need to add job entry in the prometheus.yml file.
+- kubectl edit cm prometheus-server
+- Add the below section under scrape_configs:
+  - job_name: stage_metrics
+    static_configs: 
+    - targets:
+      - <service end point>:8080
