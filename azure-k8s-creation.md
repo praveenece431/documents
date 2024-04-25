@@ -36,6 +36,7 @@ az aks create \
   --resource-group learning-RG \
   --name learning-aks \
   --node-count 2 \
+  --generate-ssh-keys \
   --node-vm-size Standard_D2s_v3 \
   --location eastus2 \
   --service-principal 6d1145d9-*****-***** \
