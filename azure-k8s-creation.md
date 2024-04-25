@@ -38,7 +38,7 @@ az aks create \
   --node-count 2 \
   --node-vm-size Standard_D2s_v3 \
   --location eastus2 \
-  --service-principal 6d1145d9-4958-4966-a3e5-13f29c69b415 \
-  --client-secret yeT8Q~48U-NAe1ZFdm3YoJJDzyauCaTIxxc0Ibd5
+  --service-principal 6d1145d9-*****-***** \
+  --client-secret yeT8Q~48U-*****casafaf*****
   ```
 
