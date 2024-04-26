@@ -14,6 +14,11 @@
 #### What is Infrastructure as a Code (IaC)?
 - Infrastructure as Code (IaC) is a method of managing and provisioning IT infrastructure using code, rather than manual configuration. It allows teams to automate the setup and management of their infrastructure, making it more efficient and consistent. This is particularly useful in the DevOps environment, where teams are constantly updating and deploying software. To know more about Infrastructure as a Code (IaC).
 
+#### Terraform flow:
+![Terraform flow diagram](https://github.com/praveenece431/documents/blob/main/images/terraform-apply.png)
+
+![Terraform flow ](https://github.com/praveenece431/documents/blob/main/images/terraform-workflow.png)
+
 ### Terraform installation steps:
 #### In Ubuntu OS:
 ```bash
