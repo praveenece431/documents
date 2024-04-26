@@ -1,5 +1,5 @@
 # Step by step commands to create Kubernetes cluster in AKS (Azure Kubernetes Service).
-## AKS is a fuly managed service in Azure
+## AKS is a fuly managed Kubernetes service in Azure
 
 ### Pre-Requisites
 - Should have a valid Azure subscription
