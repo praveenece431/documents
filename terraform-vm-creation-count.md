@@ -1,6 +1,6 @@
 # Terraform VM's creation with count
 
-### This is a simple use case demp for a beginer 
+### This is a simple use case demo for a beginer 
 #### providers.tf
 ```bash
 terraform {
