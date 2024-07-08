@@ -23,7 +23,7 @@ sudo apt update
 sudo apt install -y docker-ce docker-ce-cli containerd.io
 sudo systemctl start docker
 sudo systemctl enable docker
-sudo usermod -aG docker <your-username>
+sudo usermod -aG docker $USER
 docker --version
 ````
 
