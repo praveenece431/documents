@@ -54,7 +54,7 @@ sudo apt-get update
 #### Install Docker Engine, containerd, and Docker Compose
 ```bash
 sudo apt-get install docker.io -y
-sudo usermod -aG docker <your system user>
+sudo usermod -aG docker $USER
 # Eg: sudo usermod -aG docker azureuser
 newgrp docker
 sudo chmod 777 /var/run/docker.sock
