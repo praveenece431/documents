@@ -1,6 +1,6 @@
 # Understanding Tomcat
 
-### Tomcat, also known as Apache Tomcat, is a popular open-source web server and servlet container used to host and deploy web applications.
+### Tomcat, also known as Apache Tomcat, is a popular open-source dynamic web server and servlet container used to host and deploy web applications.
 
 ## What Tomcat Does?
 * Listens for incoming HTTP requests
