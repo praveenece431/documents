@@ -28,7 +28,7 @@ Note: The directory structure and configuration files may vary depending on the 
 ## Installing Apache HTTP Server (httpd) on Ubuntu 20.04
 ```bash
 sudo apt update
-sudo apt install apache2
+sudo apt install apache2 -y
 sudo systemctl status apache2
 ```
 
