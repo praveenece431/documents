@@ -4,8 +4,9 @@
 
 #### What httpd Does:
 1. Listens for incoming HTTP requests
-2. Processes requests and serves web pages, images, and other resources
-3. Provides a platform for deploying and managing web applications
+2. Default http port is 80
+3. Default https port is 443
+4. Processes requests and serves static web pages, images, and other resources
 #### httpd Directory Structure:
 1. /etc/apache2: Holds configuration files, such as apache2.conf and sites-available/
 2. /var/www: The directory where web applications and websites are hosted
