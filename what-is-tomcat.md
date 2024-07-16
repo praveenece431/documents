@@ -4,6 +4,7 @@
 
 ## What Tomcat Does?
 * Listens for incoming HTTP requests
+* Default uses http port 8080
 * Processes requests and serves web pages, images, and other resources
 * Manages and runs Java-based web applications (servlets, JSPs, etc.)
 * Provides a platform for deploying and managing web applications
