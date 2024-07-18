@@ -22,15 +22,15 @@
    * `b` for a block device
 
 #### The next three characters represent the owner's permissions (user), Group and Others respectivitly:
-   * r for read
-   * w for write
-   * x for execute
+   * `r` for read
+   * `w` for write
+   * `x` for execute
 
 #### Numeric (Octal) Representation:
-   * r --> 4
-   * w --> 2
-   * x --> 1
-   * - (no permission) is 0
+   * `r` --> 4
+   * `w` --> 2
+   * `x` --> 1
+   * `-` (no permission) is 0
 
    * Total --> 7. Which means 7 is the full permissions.
 ```bash
