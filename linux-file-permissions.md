@@ -15,7 +15,7 @@
 #### How it looks like is:
 
 1. The first character indicates the type of file:
-   * - for a regular file
+   * `-` for a regular file
    * d for a directory
    * l for a symbolic link
    * c for a character device
