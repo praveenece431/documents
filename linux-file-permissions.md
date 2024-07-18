@@ -16,10 +16,10 @@
 
 1. The first character indicates the type of file:
    * `-` for a regular file
-   * d for a directory
-   * l for a symbolic link
-   * c for a character device
-   * b for a block device
+   * `d` for a directory
+   * `l` for a symbolic link
+   * `c` for a character device
+   * `b` for a block device
 
 #### The next three characters represent the owner's permissions (user), Group and Others respectivitly:
    * r for read
