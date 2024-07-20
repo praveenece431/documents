@@ -26,9 +26,14 @@ ansible-galaxy collection install azure.azcollection
  ```bash
  az login --use-device-code
  ```
- - Create a Service Principal:
+ - Create a Service Principal (If you dont have Servie Principle Account):
  ```bash
  az ad sp create-for-rbac --name "AnsibleServicePrincipal" --role Contributor --scopes /subscriptions/abcd-xxxx
+ ```
+
+ - If you have App ID, Client Secret and Tenant ID, then authenticate with the below command:
+ ```bash
+ az login --service-principal -u 20c600d7-9a94-4ebb-98b8-xxxxx -p Bnh8Q~nvPP1VZ9bwomSO5vpTlwYW5jxxxxxx --tenant 84f1e4ea-8554-43e1-8709-f0bxxxxxxx
  ```
 #### This will output credentials in JSON format, including appId, password, and tenant.
 
