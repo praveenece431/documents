@@ -51,6 +51,49 @@ nexus_host ansible_host=104.41.148.131 ansible_user=devops-user ansible_ssh_comm
 
 ```bash
 ---
+- name: Install Docker on Ubuntu 22.04 VMs
+  hosts: Ubuntu_VMs
+  become: yes
+  tasks:
+    - name: Update and upgrade apt packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+
+    - name: Install required dependencies
+      apt:
+        name:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+        state: present
+
+    - name: Add Docker GPG key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable
+        state: present
+
+    - name: Update apt packages after adding Docker repo
+      apt:
+        update_cache: yes
+
+    - name: Install Docker
+      apt:
+        name: docker-ce
+        state: present
+
+    - name: Ensure Docker service is started and enabled
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
 - name: Install Jenkins
   hosts: jenkins
   become: yes
@@ -80,7 +123,7 @@ nexus_host ansible_host=104.41.148.131 ansible_user=devops-user ansible_ssh_comm
         name: jenkins
         state: started
         enabled: yes
-        
+
 - name: Deploy Docker Containers
   hosts: docker_hosts
   become: yes
