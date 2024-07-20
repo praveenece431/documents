@@ -7,6 +7,12 @@ sudo apt update
 sudo apt install ansible
 ```
 
+### Configure Passwordless authentication from Ansible Control Node to all the inventory hosts.
+```bash
+ssh-keygen -t rsa
+ssh-copy-id < target host >
+```
+
 ### Install the Azure Ansible collection (for azure cloud):
 ```bash
 ansible-galaxy collection install azure.azcollection
@@ -39,7 +45,7 @@ vm-sonarqube ansible_host=<IP_ADDRESS_SONARQUBE> ansible_user=<USERNAME>
 vm-nexus ansible_host=<IP_ADDRESS_NEXUS> ansible_user=<USERNAME>
   ```
   - Create the below playbook and save as install-tools.yml
-  
+
 ```bash  
 - name: Install Jenkins
   hosts: jenkins
