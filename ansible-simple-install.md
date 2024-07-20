@@ -4,7 +4,7 @@
 ### Set Up Ansible Control Node
 ```bash
 sudo apt update
-sudo apt install ansible
+sudo apt install ansible -y
 ```
 
 ### Configure Passwordless authentication from Ansible Control Node to all the inventory hosts.
