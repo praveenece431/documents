@@ -65,7 +65,7 @@ vm-nexus ansible_host=<IP_ADDRESS_NEXUS> ansible_user=<USERNAME>
 
     - name: Add Jenkins repository key
       apt_key:
-        url: https://pkg.jenkins.io/debian/jenkins.io.key
+        url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
         state: present
 
     - name: Add Jenkins repository
