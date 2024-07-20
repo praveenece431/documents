@@ -54,6 +54,7 @@ vm-nexus ansible_host=<IP_ADDRESS_NEXUS> ansible_user=<USERNAME>
   - Create the below playbook and save as install-tools.yml
 
 ```bash  
+---
 - name: Install Jenkins
   hosts: jenkins
   become: yes
@@ -174,10 +175,13 @@ vm-nexus ansible_host=<IP_ADDRESS_NEXUS> ansible_user=<USERNAME>
         dest: /opt
         remote_src: yes
 
+    - name: Ensure Source Directory Exists
+      stat:
+        path: /opt/nexus-3.70.1-02
+      register: nexus_src
+
     - name: Move Nexus to proper directory
-      command: mv /opt/nexus-* /opt/nexus
-      args:
-        removes: /opt/nexus-*
+      command: mv /opt/nexus-3.70.1-02 /opt/nexus
 
     - name: Create Nexus user
       user:
@@ -221,7 +225,7 @@ vm-nexus ansible_host=<IP_ADDRESS_NEXUS> ansible_user=<USERNAME>
         name: nexus
         state: started
         enabled: yes
-  ```
+```
 
 ### Execute the plybook as shown below:
 ```bash
