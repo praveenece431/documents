@@ -22,6 +22,8 @@ ansible-galaxy collection install azure.azcollection
  - Install Azure CLI:
  ```bash
  curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+ ```
+ ```bash
  az login --use-device-code
  ```
  - Create a Service Principal:
