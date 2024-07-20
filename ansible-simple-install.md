@@ -43,13 +43,13 @@ ansible-galaxy collection install azure.azcollection
   - Create an inventory file inventory.ini:
   ```bash
   [jenkins]
-vm-jenkins ansible_host=<IP_ADDRESS_JENKINS> ansible_user=<USERNAME>
+vm-jenkins ansible_host=<IP_ADDRESS_JENKINS> ansible_user=<USERNAME> ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 
 [sonarqube]
-vm-sonarqube ansible_host=<IP_ADDRESS_SONARQUBE> ansible_user=<USERNAME>
+vm-sonarqube ansible_host=<IP_ADDRESS_SONARQUBE> ansible_user=<USERNAME> ansible_ssh_common_args='-o StrictHostKeyChecking=no'
 
 [nexus]
-vm-nexus ansible_host=<IP_ADDRESS_NEXUS> ansible_user=<USERNAME>
+vm-nexus ansible_host=<IP_ADDRESS_NEXUS> ansible_user=<USERNAME> ansible_ssh_common_args='-o StrictHostKeyChecking=no'
   ```
   - Create the below playbook and save as install-tools.yml
 
