@@ -50,7 +50,7 @@ Download the latest Tomcat 9.x version from the official website:
 ```bash
 wget https://dlcdn.apache.org/tomcat/tomcat-9/v9.0.91/bin/apache-tomcat-9.0.91.tar.gz
 tar -xvf apache-tomcat-9.0.91.tar.gz
-mv  apache-tomcat-9.0.91 /opt/tomcat
+sudo mv  apache-tomcat-9.0.91 /opt/tomcat
 ```
 Create a symbolic link for easier access:
 ```bash
