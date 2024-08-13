@@ -43,3 +43,13 @@ az storage blob upload \
     --file jenkins.tar \
     --account-key $ACCOUNT_KEY
 ```
+
+### Az cli to download files
+```bash
+az storage blob download \
+    --account-name devopsbandla20841 \
+    --container-name backups \
+    --name jenkins.tar \
+    --file jenkins.tar \
+    --account-key $ACCOUNT_KEY
+```
