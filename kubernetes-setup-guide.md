@@ -11,66 +11,77 @@ This guide provides step-by-step instructions on how to setup K8s, a popular orc
 ### Prerequisites
 - Ubuntu instance with 4 GB RAM - Master Node - (with ports open to all traffic)
 - Ubuntu instance with at least 2 GB RAM - Worker Node - (with ports open to all traffic)
+- Disable the firewall if you are running VM's on Cloud
+  ```bash
+  sudo ufw disable
+  ```
+ - ### https://www.linkedin.com/pulse/kubernetes-setup-using-kubeadm-aws-ec2-ubuntu-servers-cedric-wanji/
 
 ### Execute the below commands in both Master and Worker nodes till step 8.
 
 #### Step 1
 ```bash
-cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
+
+apt-get update
+apt-get install -y apt-transport-https ca-certificates curl jq
+
+cat <<EOF > /etc/modules-load.d/k8s.conf
 overlay
 br_netfilter
 EOF
-
-sudo modprobe overlay
-sudo modprobe br_netfilter
 ```
 #### Step 2
 ```bash
-cat <<EOF | sudo tee /etc/sysctl.d/k8s.conf
+modprobe overlay
+modprobe br_netfilter
+```
+#### Step 3
+```bash
+# sysctl params required by setup, params persist across reboots
+cat <<EOF > /etc/sysctl.d/k8s.conf
 net.bridge.bridge-nf-call-iptables  = 1
 net.bridge.bridge-nf-call-ip6tables = 1
 net.ipv4.ip_forward                 = 1
 EOF
 
-sudo sysctl --system
-```
-#### Step 3
-```bash
-sudo apt-get install -y apt-transport-https ca-certificates curl gpg
-sudo apt-get update 
+# Apply sysctl params without reboot
+sysctl --system
+
 ```
 #### Step 4
-#### Add Docker’s official GPG key
+#### Install containerd
 ```bash
-sudo mkdir -m 0755 -p /etc/apt/keyrings
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+apt-get install -y containerd
+mkdir -p /etc/containerd
+containerd config default > /etc/containerd/config.toml
+sed -i 's/SystemdCgroup = false/SystemdCgroup = true/' /etc/containerd/config.toml
+systemctl restart containerd
 ```
 #### Step 5
-#### Update the apt package index
+#### Get the latest kubernetes version.
 ```bash
-sudo apt-get update
+KUBE_LATEST=$(curl -L -s https://dl.k8s.io/release/stable.txt | awk 'BEGIN { FS="." } { printf "%s.%s", $1, $2 }')
 ```
 #### Step 6
-#### Install Docker Engine, containerd, and Docker Compose
+#### Add the repository keys and GPG keys to download the kubetnetes packages.
 ```bash
-sudo apt-get install docker.io -y
-sudo usermod -aG docker $USER
-# Eg: sudo usermod -aG docker azureuser
-newgrp docker
-sudo chmod 777 /var/run/docker.sock
+mkdir -p /etc/apt/keyrings
+curl -fsSL https://pkgs.k8s.io/core:/stable:/${KUBE_LATEST}/deb/Release.key | gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/${KUBE_LATEST}/deb/ /" > /etc/apt/sources.list.d/kubernetes.list
 ```
 #### Step 7
 ### On all nodes, install kubeadm, kubelet, and kubectl
 ```bash
-curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.29/deb/Release.key | sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
-echo 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.29/deb/ /' | sudo tee /etc/apt/sources.list.d/kubernetes.list
+apt-get update
+apt-get install -y kubelet kubeadm kubectl
+apt-mark hold kubelet kubeadm kubectl
 ```
 #### Step 8
-#### Install the kube componentes kubelet, kudeadm, kubectl and kubernetes-cni on all the nodes
+#### Set crictl default config in all the nodes.
 ```bash
-sudo apt-get update
-sudo apt-get install -y kubelet kubeadm kubectl kubernetes-cni
-sudo apt-mark hold kubelet kubeadm kubectl
+crictl config \
+        --set runtime-endpoint=unix:///run/containerd/containerd.sock \
+        --set image-endpoint=unix:///run/containerd/containerd.sock
 
 #(Optional) Enable the kubelet service before running kubeadm:
 sudo systemctl enable --now kubelet
@@ -78,7 +89,7 @@ sudo systemctl enable --now kubelet
 #### Step 9 Only on Control Plane
 #### On the control plane node only, initialize the cluster and set up kubectl access
 ```bash
-sudo kubeadm init
+kubeadm init
 ```
 
 #### Step 10
@@ -87,6 +98,9 @@ sudo kubeadm init
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+sudo cp /etc/kubernetes/admin.conf .
+sudo chmod 666 admin.conf
 ```
 ### Join the worker nodes to the control plane (master)
 
@@ -106,9 +120,11 @@ kubectl get nodes
 #### Step 12
 #### The nodes will show you as in a NOT READY stage. For this, you need to install the network plugin. 
 #### This plugin will enable the pod to pod communication.
-#### Install the Calico network add-on only in the Master/Control-plane node
+#### Install the Calico or weavenet network add-on only in the Master/Control-plane node. Any one network plugin. Not both.
 ```bash
-kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
+kubectl --kubeconfig /etc/kubernetes/admin.conf apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+
+#kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.25.0/manifests/calico.yaml
 ```
 
 ### Verify the cluster again if it is working
