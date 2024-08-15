@@ -133,3 +133,61 @@ kubectl get nodes
 kubectl get pods -n kube-system
 ```
 ### Here you should see all the nodes are in READY state.
+
+## Install metrics server and Kubernetes Dashboard.
+
+#### Follow the below steps to install dashboard.
+
+```bash
+# Install Kubernetes Dashboard
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.7.0/aio/deploy/recommended.yaml
+```
+#### Patch the Kubernetes Dashboard service to use NodePort.
+```bash
+kubectl -n kubernetes-dashboard patch svc kubernetes-dashboard -p '{"spec": {"type": "NodePort"}}'
+
+#Get the NodePort assigned to the Kubernetes Dashboard:
+kubectl -n kubernetes-dashboard get svc kubernetes-dashboard
+
+```
+#### Install Metrics Server.
+```bash
+kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+# Add the following arguments under spec.containers.args:
+- --kubelet-insecure-tls
+- --kubelet-preferred-address-types=InternalIP,Hostname,ExternalIP
+```
+####  Create a Service Account and ClusterRoleBinding.
+```bash
+# Create a Service Account:
+kubectl create serviceaccount dashboard-admin-sa -n kubernetes-dashboard
+#Create a ClusterRoleBinding:
+kubectl create clusterrolebinding dashboard-admin-sa --clusterrole=cluster-admin --serviceaccount=kubernetes-dashboard:dashboard-admin-sa
+```
+### Create Secret token
+```bash
+# For later versions greater then 1.24 no longer automatically create secrets for service accounts. Instead, you need to manually create a token for the service account. Here’s how you can do it:
+# Create the token.
+kubectl create token dashboard-admin-sa -n kubernetes-dashboard
+
+# Retrieve the Token:
+TOKEN=$(kubectl create token dashboard-admin-sa -n kubernetes-dashboard)
+echo $TOKEN
+```
+#### Access the Dashboard:
+```bash
+# Run this from your local machine. You need to setup kubectl and kubeconfig in your local and access to cluster.
+kubectl proxy
+```
+#### Access the dashboard using the following URL:
+```bash
+http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+
+# provide the token above retrieved to access the dashboard.
+```
+
+
+
+
+
+
