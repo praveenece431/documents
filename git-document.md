@@ -177,3 +177,27 @@ Handling Multiple Commits
 You can also cherry-pick a range of commits by specifying a commit range.
 git cherry-pick <start_commit>^..<end_commit>
 ```
+
+# Difference Between `git fetch` and `git pull`
+
+`git fetch` and `git pull` are both commands used to retrieve updates from a remote repository. However, they operate differently.
+
+## 1. **git fetch**
+- **Purpose**: Fetches updates from a remote repository but does **not** automatically merge them with your local working branch.
+- **What it does**: It downloads the latest changes from the remote repository into your local repository's remote-tracking branches. You can inspect these changes before deciding to merge or rebase them.
+- **Usage**: Ideal when you want to check the latest changes in the remote repository without affecting your current working directory.
+  
+### Example:
+```bash
+git fetch origin
+```
+
+## 2. git pull
+Purpose: Fetches updates from a remote repository and automatically merges the changes into your current working branch.
+What it does: It performs a git fetch followed by a git merge or git rebase (depending on your configuration). It updates your working directory and the local branch by merging the remote changes.
+Usage: Ideal when you want to update your current branch with the latest changes from the remote repository.
+
+```bash
+git pull origin main
+```
+![git fetch, pull difference](image.png)
