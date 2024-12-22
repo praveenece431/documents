@@ -3,6 +3,8 @@
 ## Class notes:
 ![Rough board image](image-1.png)
 
+![git-flow](image-2.png)   ![real-scenario](image-3.png)  
+
 **Git** is a distributed version control system used to track changes in source code during software development. It allows multiple developers to collaborate on a project by managing the history of code changes, enabling efficient branching, merging, and collaboration.
 
 ## Key Features of Git
