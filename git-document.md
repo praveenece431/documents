@@ -112,3 +112,68 @@ HEAD refers to the current commit your working directory is based on. It is usua
 ```bash
 git log --oneline
 ```
+
+# Git Cherry-pick
+
+**Cherry-pick** in Git is a command used to apply the changes from a specific commit (or commits) from one branch into another. This command is useful when you want to selectively apply a change without merging an entire branch.
+
+### When to Use Cherry-pick
+Cherry-picking is useful when you want to:
+- Apply a bug fix from one branch to another without merging all changes.
+- Selectively apply commits across different branches.
+- Avoid merging unwanted changes while still benefiting from specific fixes or features.
+
+## How Cherry-pick Works
+When you perform a cherry-pick, Git takes the changes introduced in a commit from another branch and applies them to the current branch. This creates a new commit with a different hash but identical changes.
+
+### Cherry-pick Syntax:
+```bash
+git cherry-pick <commit_hash>
+```
+
+### Git Cherry-pick Example
+
+**Cherry-pick** in Git is a command used to apply the changes from a specific commit (or commits) from one branch into another. This command is useful when you want to selectively apply a change without merging an entire branch.
+
+#### Example: Using Cherry-pick
+
+### Scenario
+You have two branches: `feature` and `main`. There is a specific commit in the `feature` branch that fixes a bug, but you only want to apply that fix to the `main` branch.
+
+### Step-by-Step Process
+
+#### Step 1: Find the commit hash
+First, find the commit hash of the change you want to apply using `git log` or `git log --oneline`.
+
+```bash
+git log --oneline
+
+a1b2c3d Commit message for bug fix in feature branch
+4e5f6g7 Another commit in the feature branch
+8h9i0j1 Initial commit in the feature branch
+
+In this case, the commit hash for the bug fix is a1b2c3d.
+
+Step 2: Switch to the main branch
+Next, switch to the branch where you want to apply the commit (main in this case).
+
+git checkout main
+
+Step 3: Cherry-pick the commit from the feature branch
+Now, cherry-pick the commit from the feature branch by using its commit hash.
+
+git cherry-pick a1b2c3d
+
+Git will apply the changes from the commit a1b2c3d to the main branch. If there are no conflicts, a new commit will be created in the main branch with the changes.
+
+Example output:
+[main a4d5e6f] Commit message for bug fix in feature branch
+
+Step 4: Push the Changes
+Once the cherry-pick is successful, you can push the changes to the remote repository.
+git push origin main
+
+Handling Multiple Commits
+You can also cherry-pick a range of commits by specifying a commit range.
+git cherry-pick <start_commit>^..<end_commit>
+```
