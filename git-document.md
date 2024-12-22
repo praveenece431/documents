@@ -22,3 +22,8 @@ A **repository** (or **repo**) is a collection of files and their entire revisio
 ### Example:
 ```bash
 git init
+
+2. Commit
+A commit is a snapshot of changes in your project. Each commit has a unique identifier (hash) and records who made the changes, when they were made, and a message describing the changes.
+
+git commit -m "Add new feature"
