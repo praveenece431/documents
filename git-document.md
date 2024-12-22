@@ -1,5 +1,8 @@
 # Git Overview
 
+## Class notes:
+![Rough board image](image-1.png)
+
 **Git** is a distributed version control system used to track changes in source code during software development. It allows multiple developers to collaborate on a project by managing the history of code changes, enabling efficient branching, merging, and collaboration.
 
 ## Key Features of Git
@@ -19,7 +22,7 @@ A **repository** (or **repo**) is a collection of files and their entire revisio
 - **Local Repository**: The version of the repository on your local machine.
 - **Remote Repository**: A version of the repository hosted on a server, such as GitHub or GitLab.
 
-### Example:
+### Example to initiliaze an empty repository:
 ```bash
 git init
 ```
